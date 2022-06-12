@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./components/App";
+import ReactDOM from 'react-dom';
+import { HashRouter as Router } from 'react-router-dom';
+import App from './components/App';
+import ContextProvider from './Context';
 
-
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
-
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+ReactDOM.render(
+    <ContextProvider> 
+      <Router>
+        <App />
+      </Router>
+    </ContextProvider>,
+  document.getElementById('app')
 );

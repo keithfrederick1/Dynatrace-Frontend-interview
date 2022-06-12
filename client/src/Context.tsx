@@ -20,9 +20,10 @@ interface ContextTypes {
   setLeadsList: React.Dispatch<React.SetStateAction<Array<object>>>;
   chosenSalesLead?: SalesLeadTypes;
   setChosenSalesLead: React.Dispatch<React.SetStateAction<SalesLeadTypes>>;
-  handleLeadSubmit: (lead : SalesLeadTypes) => void;
-  handleDelete: ({ id } : SalesLeadTypes) => void;
-  handleUpdate: ({ id }: SalesLeadTypes) => void;
+  handleLeadSubmit: (lead : SalesLeadTypes) => Promise<void>;
+  handleDelete: ({ id } : SalesLeadTypes) => Promise<void>;
+  handleUpdate: ({ id }: SalesLeadTypes) => Promise<void>;
+  getLeads: () => Promise<void>;
 
 }
 
@@ -32,13 +33,13 @@ interface Props {
 
 const Context = createContext({} as ContextTypes);
 
-const ContextProvider = ({ children }: Props) => {
+const ContextProvider: React.FC<Props> = ({ children }: Props) => {
   const [showLeads, setShowLeads] = useState<boolean>(true);
   const [leadsList, setLeadsList] = useState<Array<object>>([]);
   const [chosenSalesLead, setChosenSalesLead] = useState<SalesLeadTypes>();
   
   const handleLeadSubmit = (lead : SalesLeadTypes)  => {
-    axios.post('', lead)
+    return axios.post('', lead)
       .then(({ data }) => {
         //append lead to top of leadsList
         setLeadsList([data, ...leadsList]);
@@ -49,7 +50,7 @@ const ContextProvider = ({ children }: Props) => {
   }
 
   const handleDelete = ({ id } : SalesLeadTypes) => {
-    axios.delete('')
+    return axios.delete('')
       .then(() => {
         alert('Successfully Deleted!');
       })
@@ -60,7 +61,7 @@ const ContextProvider = ({ children }: Props) => {
   }
 
   const handleUpdate = ({ id }: SalesLeadTypes) => {
-    axios.put('')
+    return axios.put('')
       .then(() => {
 
       })
@@ -69,7 +70,15 @@ const ContextProvider = ({ children }: Props) => {
       })
   }
 
-
+  const getLeads = () => {
+    return axios.get('http://localhost:3000/api/leads')
+      .then(({ data }) => {
+        setLeadsList(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
 
 
 
@@ -82,7 +91,8 @@ const ContextProvider = ({ children }: Props) => {
     setChosenSalesLead,
     handleLeadSubmit,
     handleDelete,
-    handleUpdate
+    handleUpdate,
+    getLeads
 
   }
 

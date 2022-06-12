@@ -1,19 +1,18 @@
 import * as React from 'react';
-import BreadCrumbs from './Navigation/BreadCrumbs';
-import DrawerContainer from './Navigation/DrawerContainer';
-//complete
+import { useContext, useEffect } from "react";
+import Context from '../Context';
+import PermanentDrawerLeft from "./SideDrawer";
 
-const App = () => {
+export default function App() {
+  const { getLeads } = useContext(Context);
 
-  const [showLeads, setShowLeads] = React.useState<boolean>(true);
- 
+  useEffect(() => {
+    return getLeads();
+  })
+
   return (
-    <div>
-      <BreadCrumbs />
-      <DrawerContainer showLeads={showLeads} setShowLeads={setShowLeads}/>
-      
+    <div className="App">
+      <PermanentDrawerLeft />
     </div>
-  )
+  );
 }
-
-export default App

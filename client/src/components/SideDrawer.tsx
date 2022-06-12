@@ -23,7 +23,7 @@ const handleAddClick = () : MouseEvent => {
 };
 
 const drawerWidth = 240;
-const PermanentDrawerLeft = ({ showLeads, setShowLeads }) => {
+const PermanentDrawerLeft = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
