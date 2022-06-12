@@ -1,0 +1,29 @@
+{
+  "name": "interview-fullstack-project",
+  "version": "0.0.1",
+  "description": "Fullstack interview project for Dynatrace candidates",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd client && npm run test:no-watch && cd ../server && npm run test",
+    "install:all": "npm install && cd client/ && npm install && cd ../server && npm install",
+    "start": "concurrently --kill-others \"npm run start:db\" \"npm run start:server\" \"npm run start:client\"",
+    "start:db": "docker-compose -f docker-compose.db-only.yaml up",
+    "start:server": "cd server && npm run start:dev",
+    "start:client": "cd client && npm run start"
+  },
+  "author": "Dynatrace Detroit Lab",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "docker-compose": "^0.23.17"
+  },
+  "dependencies": {
+    "@dynatrace/barista-components": "^10.7.4",
+    "@dynatrace/barista-fonts": "^1.0.1",
+    "@dynatrace/barista-icons": "^7.21.1",
+    "axios": "^0.27.2",
+    "git": "^0.1.5",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}
