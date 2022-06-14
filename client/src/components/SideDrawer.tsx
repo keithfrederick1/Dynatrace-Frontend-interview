@@ -11,10 +11,10 @@ import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { useContext } from 'react';
 import BasicBreadcrumbs from "./Breadcrumbs";
 import ValidationTextFields from "./InputFields";
 import BasicTable from "./LeadTable";
-
 
 const handleAddClick = () : MouseEvent => {
   //redirect to input fields
@@ -24,6 +24,9 @@ const handleAddClick = () : MouseEvent => {
 
 const drawerWidth = 240;
 const PermanentDrawerLeft = () => {
+  const { setShowLeads, showLeads } = useContext(Context);
+
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -89,7 +92,7 @@ const PermanentDrawerLeft = () => {
               size="small"
               variant="contained"
               sx={{ marginRight: "-80%" }}
-              onClick={() => handleAddClick()}
+              onClick={() => setShowLeads(!showLeads)}
             >
               Add lead
             </Button>

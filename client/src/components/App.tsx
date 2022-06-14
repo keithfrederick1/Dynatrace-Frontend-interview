@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { useContext, useEffect } from "react";
-import Context from '../Context';
 import PermanentDrawerLeft from "./SideDrawer";
 
 export default function App() {
-  const { getLeads } = useContext(Context);
+  // const { getLeads } = useContext(Context);
 
-  useEffect(() => {
-    return getLeads();
-  })
+  // useEffect(() => {
+  //   return getLeads();
+  // })
 
   return (
     <div className="App">

@@ -18,8 +18,8 @@ interface ContextTypes {
   setShowLeads: React.Dispatch<React.SetStateAction<boolean>>;
   leadsList?: Array<object>;
   setLeadsList: React.Dispatch<React.SetStateAction<Array<object>>>;
-  chosenSalesLead?: SalesLeadTypes;
-  setChosenSalesLead: React.Dispatch<React.SetStateAction<SalesLeadTypes>>;
+  chosenLead?: SalesLeadTypes;
+  setChosenLead: React.Dispatch<React.SetStateAction<SalesLeadTypes>>;
   handleLeadSubmit: (lead : SalesLeadTypes) => Promise<void>;
   handleDelete: ({ id } : SalesLeadTypes) => Promise<void>;
   handleUpdate: ({ id }: SalesLeadTypes) => Promise<void>;
@@ -36,10 +36,10 @@ const Context = createContext({} as ContextTypes);
 const ContextProvider: React.FC<Props> = ({ children }: Props) => {
   const [showLeads, setShowLeads] = useState<boolean>(true);
   const [leadsList, setLeadsList] = useState<Array<object>>([]);
-  const [chosenSalesLead, setChosenSalesLead] = useState<SalesLeadTypes>();
+  const [chosenLead, setChosenLead] = useState<SalesLeadTypes>();
   
   const handleLeadSubmit = (lead : SalesLeadTypes)  => {
-    return axios.post('', lead)
+    return axios.post('http://localhost:3000/api/leads ', lead)
       .then(({ data }) => {
         //append lead to top of leadsList
         setLeadsList([data, ...leadsList]);
@@ -50,7 +50,7 @@ const ContextProvider: React.FC<Props> = ({ children }: Props) => {
   }
 
   const handleDelete = ({ id } : SalesLeadTypes) => {
-    return axios.delete('')
+    return axios.delete(`http://localhost:3000/api/leads/${id}`)
       .then(() => {
         alert('Successfully Deleted!');
       })
@@ -87,8 +87,8 @@ const ContextProvider: React.FC<Props> = ({ children }: Props) => {
     setShowLeads,
     leadsList,
     setLeadsList,
-    chosenSalesLead,
-    setChosenSalesLead,
+    chosenLead,
+    setChosenLead,
     handleLeadSubmit,
     handleDelete,
     handleUpdate,
