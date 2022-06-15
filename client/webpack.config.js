@@ -6,7 +6,7 @@ const webpack = require('webpack');
 
 
 module.exports = {
-  entry: path.resolve(__dirname, './client/index.tsx'),
+  entry: path.resolve(__dirname, './index.tsx'),
   devtool: 'eval',
   mode: process.env.NODE_ENV || 'development',
   module: {
@@ -38,7 +38,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'client/src/index.html'),
+      template: path.join(__dirname, './src/index.html'),
     }),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),

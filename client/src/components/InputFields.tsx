@@ -3,24 +3,24 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 import { useContext, useState } from 'react';
-import Context from '../Context';
+import { Context } from '../Context';
 
 //complete fix context
 
 const ValidationTextFields = () => {
   const { handleLeadSubmit, setShowLeads } = useContext(Context);
-  const [leadName, setLeadName] = useState<string>('');
-  const [salesRep, setSalesRep] = useState<string>('');
-  const [client, setClient] = useState<string>('');
-  const [value, setValue] = useState<string>('');
-  const [date, setDate] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [ownerName, setOwnerName] = useState<string>('');
+  const [clientName, setClientName] = useState<string>('');
+  const [value, setValue] = useState<number>(0);
+  const [date, setDate] = useState<string| undefined>(undefined);
 
   const newLead = {
-    name: leadName,
-    value: value,
-    date: date,
-    ownerName: salesRep,
-    clientName: client
+  name,
+  value,
+  date,
+  clientName,
+  ownerName
   };
 
   return (
@@ -36,18 +36,18 @@ const ValidationTextFields = () => {
         autoComplete="off"
       >
         <div>
-          <TextField id="outlined-basic" label="Lead name" variant="outlined" onChange={(e) => setLeadName(e.target.value)}/>
+          <TextField id="outlined-basic" label="Lead name" variant="outlined" onChange={(e) => setName(e.target.value)}/>
           <br />
           <TextField
             id="outlined-basic"
             label="Sales representative "
             variant="outlined"
-            onChange={(e) => setSalesRep(e.target.value)}
+            onChange={(e) => setOwnerName(e.target.value)}
           />
           <br />
-          <TextField id="outlined-basic" label="Client" variant="outlined" onChange={(e) => setClient(e.target.value)}/>
+          <TextField id="outlined-basic" label="Client" variant="outlined" onChange={(e) => setClientName(e.target.value)}/>
           <br />
-          <TextField id="outlined-basic" label="Value" variant="outlined" onChange={(e) => setValue(e.target.value)}/>
+          <TextField id="outlined-basic" label="Value" variant="outlined" onChange={(e) => setValue(parseInt(e.target.value))}/>
           <br />
           <TextField id="outlined-basic" label="Date" variant="outlined" onChange={(e) => setDate(e.target.value)}/>
         </div>

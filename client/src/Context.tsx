@@ -8,7 +8,7 @@ interface SalesLeadTypes {
   id?: number;
   name: string;
   value: number;
-  date: Date;
+  date: string | undefined;
   clientName: string;
   ownerName: string;
 }
@@ -28,16 +28,16 @@ interface ContextTypes {
 }
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
-const Context = createContext({} as ContextTypes);
+export const Context = createContext({} as ContextTypes);
 
-const ContextProvider: React.FC<Props> = ({ children }: Props) => {
+export const ContextProvider = ({ children }: Props) => {
   const [showLeads, setShowLeads] = useState<boolean>(true);
   const [leadsList, setLeadsList] = useState<Array<object>>([]);
-  const [chosenLead, setChosenLead] = useState<SalesLeadTypes>();
-  
+  const [chosenLead, setChosenLead] = useState<SalesLeadTypes>({} as SalesLeadTypes);
+
   const handleLeadSubmit = (lead : SalesLeadTypes)  => {
     return axios.post('http://localhost:3000/api/leads ', lead)
       .then(({ data }) => {
@@ -82,7 +82,7 @@ const ContextProvider: React.FC<Props> = ({ children }: Props) => {
 
 
 
-  const LeadProps : ContextTypes = {
+  const leadProps : ContextTypes = {
     showLeads,
     setShowLeads,
     leadsList,
@@ -97,9 +97,9 @@ const ContextProvider: React.FC<Props> = ({ children }: Props) => {
   }
 
 
+
   return (
-    <Context.Provider value={LeadProps}>{children}</Context.Provider>
+   <><Context.Provider value={leadProps}>{children}</Context.Provider></>
   );
 };
 
-export default { ContextProvider, Context };
