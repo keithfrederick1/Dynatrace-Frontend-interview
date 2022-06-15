@@ -28,24 +28,34 @@ const PermanentDrawerLeft = () => {
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
-        <BasicBreadcrumbs />
-      </AppBar>
-      <Drawer
-        sx={{
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "#30b8f2"
+      }}
+    >
+      <BasicBreadcrumbs />
+    </AppBar>
+    <Drawer
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        "& .MuiDrawer-paper": {
           width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box"
-          }
-        }}
+          boxSizing: "border-box",
+          backgroundColor: "#fafafa"
+        }
+      }}
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
-        <Divider />
+          <div
+          style={{
+            height: "80px",
+            flex: "start",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <h3>Accounts</h3>
+        </div>
         <List>
           {["Sales leads", "Contacts", "Calendar", "Reports"].map(
             (text, index) => (
@@ -85,13 +95,18 @@ const PermanentDrawerLeft = () => {
               Showing _ of _
             </Typography>
             <Button
-              size="small"
+              size="medium"
               variant="contained"
-              sx={{ marginRight: "-80%" }}
+              sx={{
+                marginRight: "-80%",
+                backgroundColor: "#51b7c2",
+                fontSize: "10px"
+               }}
               onClick={() => setShowLeads(!showLeads)}
             >
               Add lead
             </Button>
+            <div style={{ height: "10px" }}></div>
             <BasicTable />
           </>
         ) : (

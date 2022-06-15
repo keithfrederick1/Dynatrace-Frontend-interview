@@ -38,18 +38,19 @@ const BasicTable = () => {
               key={lead.name}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{ color: "#1f94b8" }}>
                 {lead.name}
               </TableCell>
-              <TableCell align="left">{lead.ownerName}</TableCell>
-              <TableCell align="left">{lead.clientName}</TableCell>
-              <TableCell align="left">{lead.value}</TableCell>
-              <TableCell align="left">{lead.date}</TableCell>
+              <TableCell align="left" sx={{ color: "black" }}>{lead.ownerName}</TableCell>
+              <TableCell align="left" sx={{ color: "#636363" }}>{lead.clientName}</TableCell>
+              <TableCell align="left" sx={{ color: "#636363" }}>{lead.value}</TableCell>
+              <TableCell align="left" sx={{ color: "#636363" }}>{lead.date}</TableCell>
               <TableCell align="left">
                 <Button
                 variant="text"
-                onClick={() => selectAndSend()}>
-                  x
+                onClick={() => selectAndSend()}
+                sx={{ color: "#51b7c2", fontWeight: "bold" }}>
+                  X
                 </Button>
               </TableCell>
             </TableRow>

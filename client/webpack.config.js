@@ -6,6 +6,9 @@ const webpack = require('webpack');
 
 
 module.exports = {
+  devServer: {
+    port: 8080,
+  },
   entry: path.resolve(__dirname, './index.tsx'),
   devtool: 'eval',
   mode: process.env.NODE_ENV || 'development',
@@ -45,7 +48,5 @@ module.exports = {
     }),
     new NodePolyfillPlugin(),
   ],
-  devServer: {
-    port: 8080
-  }
+
 };

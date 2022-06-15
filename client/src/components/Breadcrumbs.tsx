@@ -1,4 +1,5 @@
-import { Breadcrumbs, Link, Typography } from "@mui/material";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Breadcrumbs, Link } from "@mui/material";
 import * as React from "react";
 
 
@@ -12,18 +13,20 @@ const handleClick = (event : MouseEvent) => {
 const BasicBreadcrumbs = () => {
   return (
     <div role="presentation" onClick={() => handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
-          Accounts
-        </Link>
+      <Breadcrumbs aria-label="breadcrumb"  separator="">
+        <div style={{ backgroundColor: "#1181d1" }}>
+          <Link underline="hover" color="white" href="/">
+            Accounts
+          </Link>
+          <ArrowForwardIosIcon sx={{ color: "white" }} />
+        </div>
         <Link
           underline="hover"
-          color="inherit"
+          color="white"
           href="/material-ui/getting-started/installation/"
         >
           Sales leads
         </Link>
-        <Typography color="text.primary">Breadcrumbs</Typography>
       </Breadcrumbs>
     </div>
   );
