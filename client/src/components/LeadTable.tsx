@@ -1,7 +1,7 @@
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import * as React from "react";
 import { useContext } from 'react';
-import Context from '../Context';
+import { Context } from '../Context';
 
 
 
@@ -11,10 +11,11 @@ const BasicTable = () => {
 
   //helper function to assign chosen lead and delete
   const selectAndSend  = (e? : MouseEvent) => {
-    if (e && e.target) {
-    setChosenLead((e.target as HTMLButtonElement).value);
-    handleDelete(chosenLead.id);
-    }
+    // if (e && e.target) {
+    // setChosenLead((e.target as HTMLButtonElement).value);
+    // handleDelete(chosenLead.id);
+    // }
+    console.log("delete")
     
   }
 
@@ -32,7 +33,7 @@ const BasicTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {leadsList.map((lead) => (
+          {leadsList ? leadsList.map((lead) => (
             <TableRow
               key={lead.name}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -45,14 +46,14 @@ const BasicTable = () => {
               <TableCell align="left">{lead.value}</TableCell>
               <TableCell align="left">{lead.date}</TableCell>
               <TableCell align="left">
-                <Button 
+                <Button
                 variant="text"
                 onClick={() => selectAndSend()}>
                   x
                 </Button>
               </TableCell>
             </TableRow>
-          ))}
+          )): <div>No Data</div>}
         </TableBody>
       </Table>
     </TableContainer>

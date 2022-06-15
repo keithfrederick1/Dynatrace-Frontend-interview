@@ -4,14 +4,14 @@ import * as React from "react";
 
 //install react router
 
-const handleClick = (event) => {
+const handleClick = (event : MouseEvent) => {
   event.preventDefault();
   console.info("You clicked a breadcrumb.");
 }
 
 const BasicBreadcrumbs = () => {
   return (
-    <div role="presentation" onClick={handleClick}>
+    <div role="presentation" onClick={() => handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" href="/">
           Accounts

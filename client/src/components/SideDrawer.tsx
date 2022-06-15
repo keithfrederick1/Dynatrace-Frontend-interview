@@ -12,15 +12,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useContext } from 'react';
+import { Context } from '../Context';
 import BasicBreadcrumbs from "./Breadcrumbs";
 import ValidationTextFields from "./InputFields";
 import BasicTable from "./LeadTable";
 
-const handleAddClick = () : MouseEvent => {
-  //redirect to input fields
-  //setshowLeads to false
-  return 
-};
 
 const drawerWidth = 240;
 const PermanentDrawerLeft = () => {

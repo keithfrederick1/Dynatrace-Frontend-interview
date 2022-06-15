@@ -45,4 +45,7 @@ module.exports = {
     }),
     new NodePolyfillPlugin(),
   ],
+  devServer: {
+    port: 8080
+  }
 };

@@ -16,8 +16,8 @@ interface SalesLeadTypes {
 interface ContextTypes {
   showLeads: boolean;
   setShowLeads: React.Dispatch<React.SetStateAction<boolean>>;
-  leadsList?: Array<object>;
-  setLeadsList: React.Dispatch<React.SetStateAction<Array<object>>>;
+  leadsList?: Array<SalesLeadTypes>;
+  setLeadsList: React.Dispatch<React.SetStateAction<Array<SalesLeadTypes>>>;
   chosenLead?: SalesLeadTypes;
   setChosenLead: React.Dispatch<React.SetStateAction<SalesLeadTypes>>;
   handleLeadSubmit: (lead : SalesLeadTypes) => Promise<void>;
@@ -35,7 +35,7 @@ export const Context = createContext({} as ContextTypes);
 
 export const ContextProvider = ({ children }: Props) => {
   const [showLeads, setShowLeads] = useState<boolean>(true);
-  const [leadsList, setLeadsList] = useState<Array<object>>([]);
+  const [leadsList, setLeadsList] = useState<Array<SalesLeadTypes>>([]);
   const [chosenLead, setChosenLead] = useState<SalesLeadTypes>({} as SalesLeadTypes);
 
   const handleLeadSubmit = (lead : SalesLeadTypes)  => {
