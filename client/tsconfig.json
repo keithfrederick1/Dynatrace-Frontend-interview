@@ -18,6 +18,6 @@
   "jsx": "react",
   "module": "ES2015",                                /* Specify what module code is generated. */
   // "rootDir": "./client",                                  /* Specify the root folder within your source files. */
-  "moduleResolution": "node"
+  "moduleResolution": "node",
  }
 }

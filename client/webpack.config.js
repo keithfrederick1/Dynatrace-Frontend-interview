@@ -7,16 +7,16 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
-    port: 8080,
+    port: 3000,
   },
   entry: path.resolve(__dirname, './index.tsx'),
   devtool: 'eval',
-  mode: process.env.NODE_ENV || 'development',
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.(ts|tsx|js|jsx)$/,
-        use: 'ts-loader',
+        use: ['ts-loader'],
         exclude: /node_modules/,
         resolve: {
           extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
