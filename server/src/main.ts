@@ -3,8 +3,8 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationError } from 'class-validator';
 import helmet from 'helmet';
+import { BASE_API_PATH } from '../dist/leads/constants';
 import { AppModule } from './app.module';
-import { BASE_API_PATH } from './leads/constants';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

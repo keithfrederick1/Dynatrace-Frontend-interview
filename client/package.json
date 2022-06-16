@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev": "webpack --watch"
+    "dev": "npx webpack serve"
   },
   "private": true,
   "license": "UNLICENSED",

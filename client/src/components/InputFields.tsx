@@ -8,7 +8,7 @@ import { Context } from '../Context';
 
 
 const ValidationTextFields = () => {
-  const { handleLeadSubmit, setShowLeads } = useContext(Context);
+  const { handleLeadSubmit, setShowLeads, showLeads } = useContext(Context);
   const [name, setName] = useState<string>('');
   const [ownerName, setOwnerName] = useState<string>('');
   const [clientName, setClientName] = useState<string>('');
@@ -16,11 +16,11 @@ const ValidationTextFields = () => {
   const [date, setDate] = useState<string| undefined>(undefined);
 
   const newLead = {
-  name,
-  value,
-  date,
-  clientName,
-  ownerName
+  name: name,
+  value: value,
+  date: date,
+  clientName: clientName,
+  ownerName: ownerName
   };
 
   return (
@@ -42,7 +42,7 @@ const ValidationTextFields = () => {
             id="outlined-basic"
             label="Sales representative "
             variant="outlined"
-            onChange={(e) => setOwnerName(e.target.value)}
+            // onChange={(e) => setOwnerName(e.target.value)}
           />
           <br />
           <TextField id="outlined-basic" label="Client" variant="outlined" onChange={(e) => setClientName(e.target.value)}/>
@@ -52,7 +52,7 @@ const ValidationTextFields = () => {
           <TextField id="outlined-basic" label="Date" variant="outlined" onChange={(e) => setDate(e.target.value)}/>
         </div>
       </Box>
-      <Button variant="outlined" onClick={() => setShowLeads(false)}>Cancel</Button>
+      <Button variant="outlined" onClick={() => showLeads = false}>Cancel</Button>
       <Button variant="contained" onClick={() => handleLeadSubmit(newLead)}>Save</Button>
     </div>
   );

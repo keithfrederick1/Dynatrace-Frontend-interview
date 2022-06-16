@@ -7,7 +7,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
-    port: 3000,
+    port: 8080,
   },
   entry: path.resolve(__dirname, './index.tsx'),
   devtool: 'eval',
