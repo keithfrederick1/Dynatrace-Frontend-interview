@@ -52,7 +52,7 @@ const ValidationTextFields = () => {
           <TextField id="outlined-basic" label="Date" variant="outlined" onChange={(e) => setDate(e.target.value)}/>
         </div>
       </Box>
-      <Button variant="outlined" onClick={() => showLeads = false}>Cancel</Button>
+      <Button variant="outlined" onClick={() => setShowLeads(!showLeads)}>Cancel</Button>
       <Button variant="contained" onClick={() => handleLeadSubmit(newLead)}>Save</Button>
     </div>
   );
