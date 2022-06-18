@@ -1,7 +1,7 @@
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import * as React from "react";
 import { useContext } from 'react';
-import Context from '../Context';
+import { Context } from '../Context';
 
 
 
@@ -11,10 +11,11 @@ const BasicTable = () => {
 
   //helper function to assign chosen lead and delete
   const selectAndSend  = (e? : MouseEvent) => {
-    if (e && e.target) {
-    setChosenLead((e.target as HTMLButtonElement).value);
-    handleDelete(chosenLead.id);
-    }
+    // if (e && e.target) {
+    // setChosenLead((e.target as HTMLButtonElement).value);
+    // handleDelete(chosenLead.id);
+    // }
+    console.log("delete")
     
   }
 
@@ -32,27 +33,28 @@ const BasicTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {leadsList.map((lead) => (
+          {leadsList ? leadsList.map((lead) => (
             <TableRow
               key={lead.name}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{ color: "#1f94b8" }}>
                 {lead.name}
               </TableCell>
-              <TableCell align="left">{lead.ownerName}</TableCell>
-              <TableCell align="left">{lead.clientName}</TableCell>
-              <TableCell align="left">{lead.value}</TableCell>
-              <TableCell align="left">{lead.date}</TableCell>
+              <TableCell align="left" sx={{ color: "black" }}>{lead.ownerName}</TableCell>
+              <TableCell align="left" sx={{ color: "#636363" }}>{lead.clientName}</TableCell>
+              <TableCell align="left" sx={{ color: "#636363" }}>{lead.value}</TableCell>
+              <TableCell align="left" sx={{ color: "#636363" }}>{lead.date}</TableCell>
               <TableCell align="left">
-                <Button 
+                <Button
                 variant="text"
-                onClick={() => selectAndSend()}>
-                  x
+                onClick={() => selectAndSend()}
+                sx={{ color: "#51b7c2", fontWeight: "bold" }}>
+                  X
                 </Button>
               </TableCell>
             </TableRow>
-          ))}
+          )): <div>No Data</div>}
         </TableBody>
       </Table>
     </TableContainer>

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { LeadsModule } from './leads/leads.module';
+import { LeadsModule } from '../dist/leads/leads.module';
 
 @Module({
   imports: [ConfigModule.forRoot(), LeadsModule],

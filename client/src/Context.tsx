@@ -8,7 +8,7 @@ interface SalesLeadTypes {
   id?: number;
   name: string;
   value: number;
-  date: Date;
+  date: string | undefined;
   clientName: string;
   ownerName: string;
 }
@@ -16,10 +16,10 @@ interface SalesLeadTypes {
 interface ContextTypes {
   showLeads: boolean;
   setShowLeads: React.Dispatch<React.SetStateAction<boolean>>;
-  leadsList?: Array<object>;
-  setLeadsList: React.Dispatch<React.SetStateAction<Array<object>>>;
-  chosenSalesLead?: SalesLeadTypes;
-  setChosenSalesLead: React.Dispatch<React.SetStateAction<SalesLeadTypes>>;
+  leadsList?: Array<SalesLeadTypes>;
+  setLeadsList: React.Dispatch<React.SetStateAction<Array<SalesLeadTypes>>>;
+  chosenLead?: SalesLeadTypes;
+  setChosenLead: React.Dispatch<React.SetStateAction<SalesLeadTypes>>;
   handleLeadSubmit: (lead : SalesLeadTypes) => Promise<void>;
   handleDelete: ({ id } : SalesLeadTypes) => Promise<void>;
   handleUpdate: ({ id }: SalesLeadTypes) => Promise<void>;
@@ -28,18 +28,18 @@ interface ContextTypes {
 }
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
-const Context = createContext({} as ContextTypes);
+export const Context = createContext({} as ContextTypes);
 
-const ContextProvider: React.FC<Props> = ({ children }: Props) => {
+export const ContextProvider = ({ children }: Props) => {
   const [showLeads, setShowLeads] = useState<boolean>(true);
-  const [leadsList, setLeadsList] = useState<Array<object>>([]);
-  const [chosenSalesLead, setChosenSalesLead] = useState<SalesLeadTypes>();
-  
+  const [leadsList, setLeadsList] = useState<Array<SalesLeadTypes>>([]);
+  const [chosenLead, setChosenLead] = useState<SalesLeadTypes>({} as SalesLeadTypes);
+
   const handleLeadSubmit = (lead : SalesLeadTypes)  => {
-    return axios.post('', lead)
+    return axios.post('http://localhost:3000/api/leads ', lead)
       .then(({ data }) => {
         //append lead to top of leadsList
         setLeadsList([data, ...leadsList]);
@@ -50,7 +50,7 @@ const ContextProvider: React.FC<Props> = ({ children }: Props) => {
   }
 
   const handleDelete = ({ id } : SalesLeadTypes) => {
-    return axios.delete('')
+    return axios.delete(`http://localhost:3000/api/leads/${id}`)
       .then(() => {
         alert('Successfully Deleted!');
       })
@@ -82,13 +82,13 @@ const ContextProvider: React.FC<Props> = ({ children }: Props) => {
 
 
 
-  const LeadProps : ContextTypes = {
+  const leadProps : ContextTypes = {
     showLeads,
     setShowLeads,
     leadsList,
     setLeadsList,
-    chosenSalesLead,
-    setChosenSalesLead,
+    chosenLead,
+    setChosenLead,
     handleLeadSubmit,
     handleDelete,
     handleUpdate,
@@ -97,9 +97,9 @@ const ContextProvider: React.FC<Props> = ({ children }: Props) => {
   }
 
 
+
   return (
-    <Context.Provider value={LeadProps}>{children}</Context.Provider>
+   <><Context.Provider value={leadProps}>{children}</Context.Provider></>
   );
 };
 
-export default { ContextProvider, Context };
