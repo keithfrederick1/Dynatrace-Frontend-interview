@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useContext } from 'react';
 import { Context } from '../Context';
-import BasicBreadcrumbs from "./Breadcrumbs";
+import Chevron from "./Chev/Chevron";
 import ValidationTextFields from "./InputFields";
 import BasicTable from "./LeadTable";
 
@@ -24,15 +24,16 @@ const PermanentDrawerLeft = () => {
 
 
   return (
+    <div>
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "#30b8f2"
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "#E6ECED",
       }}
         elevation={0}
     >
-      <BasicBreadcrumbs />
+      <Chevron />
     </AppBar>
     <Drawer
       sx={{
@@ -40,8 +41,8 @@ const PermanentDrawerLeft = () => {
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-          boxSizing: "border-box",
-          backgroundColor: "#fafafa"
+          boxSizing: "content-box",
+          backgroundColor: "#E6ECED"
         }
       }}
         variant="permanent"
@@ -75,10 +76,11 @@ const PermanentDrawerLeft = () => {
               paragraph
               sx={{
                 fontWeight: "bold",
-                fontSize: "27px"
+                fontSize: "27px",
+                
               }}
             >
-              Sales Leads
+              Sales leads
             </Typography>
             <Typography paragraph >
               { leadsList ? `Showing ${leadsList.length} of ${leadsList.length}` : ''}
@@ -90,6 +92,7 @@ const PermanentDrawerLeft = () => {
                 right: "-90%",
                 backgroundColor: "#51b7c2",
                 fontSize: "10px",
+                boxShadow: 0
                }}
               onClick={() => setShowLeads(!showLeads)}
             >
@@ -103,6 +106,7 @@ const PermanentDrawerLeft = () => {
         )}
       </Box>
     </Box>
+    </div>
   );
 }
 

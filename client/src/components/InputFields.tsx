@@ -30,7 +30,7 @@ const ValidationTextFields = () => {
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" }
+          "& .MuiTextField-root": { m: 1, width: "80ch" }
         }}
         noValidate
         autoComplete="off"
@@ -42,7 +42,7 @@ const ValidationTextFields = () => {
             id="outlined-basic"
             label="Sales representative "
             variant="outlined"
-            // onChange={(e) => setOwnerName(e.target.value)}
+            onChange={(e) => setOwnerName(e.target.value)}
           />
           <br />
           <TextField id="outlined-basic" label="Client" variant="outlined" onChange={(e) => setClientName(e.target.value)}/>
@@ -52,8 +52,8 @@ const ValidationTextFields = () => {
           <TextField id="outlined-basic" label="Date" variant="outlined" onChange={(e) => setDate(e.target.value)}/>
         </div>
       </Box>
-      <Button variant="outlined" onClick={() => setShowLeads(!showLeads)}>Cancel</Button>
-      <Button variant="contained" onClick={() => handleLeadSubmit(newLead)}>Save</Button>
+      <Button variant="outlined" onClick={() => setShowLeads(!showLeads)} sx={{ left: '540px', borderColor: '#00C5E0', color: '#00C5E0', boxShadow: 0 }}>Cancel</Button>
+      <Button variant="contained" onClick={() => handleLeadSubmit(newLead)} sx={{  left: '550px', backgroundColor: '#00C5E0', boxShadow: 0}}>Save</Button>
     </div>
   );
 }

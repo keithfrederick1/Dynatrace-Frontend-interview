@@ -3,6 +3,22 @@ import * as React from "react";
 import { useContext } from 'react';
 import { Context } from '../Context';
 
+//for formatting currency
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+});
+//for formatting date 
+const formDate = (date : any) => {
+  let year = date.getFullYear();
+  let month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+  let day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+
+  return month + '/' + day + '/' + year;
+
+}
 
 
 
@@ -21,7 +37,7 @@ const BasicTable = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 650 , fontFamily: 'Open Sans, Sans-serif', }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="left">Lead name</TableCell>
@@ -43,7 +59,7 @@ const BasicTable = () => {
               </TableCell>
               <TableCell align="left" sx={{ color: "black" }}>{lead.ownerName}</TableCell>
               <TableCell align="left" sx={{ color: "#636363" }}>{lead.clientName}</TableCell>
-              <TableCell align="left" sx={{ color: "#636363" }}>{lead.value}</TableCell>
+              <TableCell align="left" sx={{ color: "#636363" }}>{formatter.format(lead.value)}</TableCell>
               <TableCell align="left" sx={{ color: "#636363" }}>{lead.date}</TableCell>
               <TableCell align="left">
                 <Button
