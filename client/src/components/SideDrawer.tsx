@@ -20,7 +20,7 @@ import BasicTable from "./LeadTable";
 
 const drawerWidth = 240;
 const PermanentDrawerLeft = () => {
-  const { setShowLeads, showLeads } = useContext(Context);
+  const { setShowLeads, showLeads, leadsList } = useContext(Context);
 
 
   return (
@@ -30,6 +30,7 @@ const PermanentDrawerLeft = () => {
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "#30b8f2"
       }}
+        elevation={0}
     >
       <BasicBreadcrumbs />
     </AppBar>
@@ -46,16 +47,7 @@ const PermanentDrawerLeft = () => {
         variant="permanent"
         anchor="left"
       >
-          <div
-          style={{
-            height: "80px",
-            flex: "start",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
-          <h3>Accounts</h3>
-        </div>
+          <h3 style={{ marginTop: '80px', marginLeft: '15px'}}>Accounts</h3>
         <List>
           {["Sales leads", "Contacts", "Calendar", "Reports"].map(
             (text, index) => (
@@ -82,25 +74,22 @@ const PermanentDrawerLeft = () => {
             <Typography
               paragraph
               sx={{
-                marginLeft: "-46rem",
-                marginTop: "-3rem",
                 fontWeight: "bold",
                 fontSize: "27px"
               }}
             >
-              {" "}
               Sales Leads
             </Typography>
-            <Typography paragraph sx={{ marginLeft: "-49rem" }}>
-              Showing _ of _
+            <Typography paragraph >
+              { leadsList ? `Showing ${leadsList.length} of ${leadsList.length}` : ''}
             </Typography>
             <Button
               size="medium"
               variant="contained"
               sx={{
-                marginRight: "-80%",
+                right: "-90%",
                 backgroundColor: "#51b7c2",
-                fontSize: "10px"
+                fontSize: "10px",
                }}
               onClick={() => setShowLeads(!showLeads)}
             >
