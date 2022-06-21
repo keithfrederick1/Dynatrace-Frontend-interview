@@ -21,8 +21,8 @@ interface ContextTypes {
   chosenLead?: SalesLeadTypes;
   setChosenLead: React.Dispatch<React.SetStateAction<SalesLeadTypes>>;
   handleLeadSubmit: (lead : SalesLeadTypes) => Promise<void>;
-  handleDelete: ({ id } : SalesLeadTypes) => Promise<void>;
-  handleUpdate: ({ id }: SalesLeadTypes) => Promise<void>;
+  handleDelete: (id : number | undefined ) => Promise<void>;
+  handleUpdate: (id : number | undefined ) => Promise<void>;
   getLeads: () => Promise<void>;
 
 }
@@ -44,23 +44,28 @@ export const ContextProvider = ({ children }: Props) => {
         //append lead to top of leadsList
         setLeadsList([data, ...leadsList]);
       })
+      .then(() => {
+        setShowLeads(!showLeads);
+      })
       .catch((err) => {
         console.error(`Error in POST req: ${err}`);
       })
   }
 
-  const handleDelete = ({ id } : SalesLeadTypes) => {
+  const handleDelete = ( id : number | undefined ) => {
     return axios.delete(`http://localhost:3000/api/leads/${id}`)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         alert('Successfully Deleted!');
       })
+      .then(() => getLeads())
       .catch((err) => {
         console.error(`Error in DELETE req: ${err}`);
       })
 
   }
 
-  const handleUpdate = ({ id }: SalesLeadTypes) => {
+  const handleUpdate = (id : number | undefined ) => {
     return axios.put('')
       .then(() => {
 

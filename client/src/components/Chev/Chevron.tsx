@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from "../../Context";
 import './styles.css';
 
-const routes = ['Accounts', 'Sales leads', 'Add sales lead'];
+let routes = ['Accounts', 'Sales leads', 'Add sales lead'];
 
 const Chevron = () => {
+  const { setShowLeads, showLeads } = useContext(Context);
+
   return (
    <ul className="breadcrumb">
     {routes.map((r) => {
         return (
-            <li><a href='#'>{r}</a></li>
+            <li><a href='#' onClick={() => setShowLeads(true)}>{r}</a></li>
         )
     })}
    </ul>

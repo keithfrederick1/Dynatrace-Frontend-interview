@@ -25,15 +25,6 @@ const formDate = (date : any) => {
 const BasicTable = () => {
   const { leadsList, handleDelete, setChosenLead, chosenLead } = useContext(Context);
 
-  //helper function to assign chosen lead and delete
-  const selectAndSend  = (e? : MouseEvent) => {
-    // if (e && e.target) {
-    // setChosenLead((e.target as HTMLButtonElement).value);
-    // handleDelete(chosenLead.id);
-    // }
-    console.log("delete")
-    
-  }
 
   return (
     <TableContainer component={Paper}>
@@ -51,7 +42,7 @@ const BasicTable = () => {
         <TableBody>
           {leadsList ? leadsList.map((lead) => (
             <TableRow
-              key={lead.name}
+              key={lead.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row" sx={{ color: "#1f94b8" }}>
@@ -64,7 +55,7 @@ const BasicTable = () => {
               <TableCell align="left">
                 <Button
                 variant="text"
-                onClick={() => selectAndSend()}
+                onClick={() => handleDelete(lead.id)}
                 sx={{ color: "#51b7c2", fontWeight: "bold" }}>
                   X
                 </Button>
