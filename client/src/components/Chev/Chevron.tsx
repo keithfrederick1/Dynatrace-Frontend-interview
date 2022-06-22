@@ -9,10 +9,14 @@ const Chevron = () => {
 
   return (
    <ul className="breadcrumb">
-    {routes.map((r) => {
+    {showLeads === false ? routes.map((r) => {
         return (
             <li><a href='#' onClick={() => setShowLeads(true)}>{r}</a></li>
         )
+    }) : routes.slice(0,2).map((r) => {
+      return (
+        <li><a href='#' onClick={() => setShowLeads(false)}>{r}</a></li>
+      )
     })}
    </ul>
   )

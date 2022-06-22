@@ -54,11 +54,9 @@ export const ContextProvider = ({ children }: Props) => {
 
   const handleDelete = ( id : number | undefined ) => {
     return axios.delete(`http://localhost:3000/api/leads/${id}`)
-      .then((res) => {
-        console.log(res);
-        alert('Successfully Deleted!');
+      .then(() => {
+        getLeads();
       })
-      .then(() => getLeads())
       .catch((err) => {
         console.error(`Error in DELETE req: ${err}`);
       })

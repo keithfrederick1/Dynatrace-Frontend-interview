@@ -53,13 +53,7 @@
     padding-left: 10px;
   }
   .breadcrumb li:nth-child(2) a       { background:       rgb(0, 126, 205); }
-  .breadcrumb li:nth-child(2) a:after { border-left-color: rgb(0, 126, 205); }
-  .breadcrumb li:nth-child(3) a       { background:        rgb(55, 175, 249); }
-  .breadcrumb li:nth-child(3) a:after { border-left-color: rgb(55, 175, 249); }
-  .breadcrumb li:nth-child(4) a       { background:        rgb(55, 175, 249); }
-  .breadcrumb li:nth-child(4) a:after { border-left-color: rgb(55, 175, 249); }
-  .breadcrumb li:nth-child(5) a       { background:        rgb(55, 175, 249); }
-  .breadcrumb li:nth-child(5) a:after { border-left-color: rgb(55, 175, 249); }
+  .breadcrumb li:nth-child(2) a      { border-left-color: rgb(55, 175, 249); }
   .breadcrumb li:last-child a {
     background: rgb(55, 175, 249) !important;
     color: white;
@@ -67,6 +61,8 @@
     cursor: default;
     width: 78vw;
   }
+  .breadcrumb li:last-child a:after { border-left-color: rgb(55, 175, 249); }
+  
   .breadcrumb li a:hover { 
     background: rgb(0, 101, 159); 
   }
