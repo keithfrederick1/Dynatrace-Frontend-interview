@@ -8,7 +8,7 @@ interface SalesLeadTypes {
   id?: number;
   name: string;
   value: number;
-  date: string | undefined;
+  date: Date | null;
   clientName: string;
   ownerName: string;
 }
