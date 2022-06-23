@@ -7,6 +7,7 @@ import PermanentDrawerLeft from './SideDrawer';
 export default function App() {
  const { getLeads } = useContext(Context);
 
+
   useEffect(() => {
    getLeads();
   })
@@ -14,7 +15,6 @@ export default function App() {
   return (
     <div className="App">
       <PermanentDrawerLeft />
-      {/* <Chevron /> */}
     </div>
   );
 }

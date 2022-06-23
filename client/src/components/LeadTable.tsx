@@ -1,25 +1,23 @@
+import ClearIcon from '@mui/icons-material/Clear';
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import * as React from "react";
 import { useContext } from 'react';
 import { Context } from '../Context';
-
 //for formatting currency
-const formatter = new Intl.NumberFormat('en-US', {
+const currFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD'
 });
 //for formatting date 
-const formDate = (date : any) => {
-  let year = date.getFullYear();
-  let month = (1 + date.getMonth()).toString();
-  month = month.length > 1 ? month : '0' + month;
-  let day = date.getDate().toString();
-  day = day.length > 1 ? day : '0' + day;
-
-  return month + '/' + day + '/' + year;
-
+const formatDate = (date: Date ) => {
+  function pad(s : any) { return (s < 10) ? '0' + s : s; }
+  var d = new Date(date)
+  return [pad(d.getMonth()+1), pad(d.getDate()), d.getFullYear()].join('/')
 }
 
+
+
+const columns = ['Lead name', 'Sales rep', 'Clients', 'Value', 'Date', 'Delete'];
 
 
 const BasicTable = () => {
@@ -31,12 +29,7 @@ const BasicTable = () => {
       <Table sx={{ minWidth: 650 , fontFamily: 'Open Sans, Sans-serif', }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Lead name</TableCell>
-            <TableCell align="left">Sales Rep</TableCell>
-            <TableCell align="left">Clients</TableCell>
-            <TableCell align="left">Value</TableCell>
-            <TableCell align="left">Date</TableCell>
-            <TableCell align="left">Delete</TableCell>
+            { columns.map(c =>  <TableCell align="left" sx={{fontWeight: 'bold'}}>{c}</TableCell>)}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -50,14 +43,14 @@ const BasicTable = () => {
               </TableCell>
               <TableCell align="left" sx={{ color: "black" }}>{lead.ownerName}</TableCell>
               <TableCell align="left" sx={{ color: "#636363" }}>{lead.clientName}</TableCell>
-              <TableCell align="left" sx={{ color: "#636363" }}>{formatter.format(lead.value)}</TableCell>
-              <TableCell align="left" sx={{ color: "#636363" }}>{lead.date}</TableCell>
+              <TableCell align="left" sx={{ color: "#636363" }}>{currFormatter.format(lead.value)}</TableCell>
+              <TableCell align="left" sx={{ color: "#636363" }}>{lead.date !== null ? formatDate(lead.date): lead.date}</TableCell>
               <TableCell align="left">
                 <Button
                 variant="text"
                 onClick={() => handleDelete(lead.id)}
                 sx={{ color: "#51b7c2", fontWeight: "bold" }}>
-                  X
+                  <ClearIcon />
                 </Button>
               </TableCell>
             </TableRow>
